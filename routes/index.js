@@ -33,15 +33,20 @@ router.post(
         ]);
         if (existStudent.length == 0) {
           try {
-            await mongoose.model("student").create(workbookContent);
-            return res.send("created new students");
+            await mongoose
+              .model("student")
+              .create(workbookContent, (err, result) => {
+                return res.render("uploadFile", {
+                  update: 0,
+                  create: result.length
+                });
+              });
           } catch (error) {
             console.log("create student in db error" + error);
             return res.send("create student in db error" + error);
           }
         } else {
           var create = (update = 0);
-
           let result = await Promise.all(
             workbookContent.map(async (content, index) => {
               let found = await existStudent.find(function(student) {
