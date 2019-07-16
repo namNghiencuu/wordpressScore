@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UploadFile kêt quả</title>
+</head>
+
+<body>
+  <form id="uploadFile" action="/uploadFile" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="text" name="class" placeholder="Nhập lớp vào đây">
+    <button type="submit">Tải lên</button>
+  </form>
+  <% if(update != 0) {%>
+  <p>Bạn đã cập nhật <%- update %> người</p>
+  <%} %>
+  <% if(create != 0) {%>
+  <p>Bạn đã tạo <%- create %> người</p>
+  <%} %>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dò kết quả lớp học wordpress</title>
+  <link href="/stylesheet/view.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <img src="/images/uitLogo.jpg" id="logo" alt="Logo">
+  <div class="container">
+    <form id="infoInput" action="/getScore" method="POST">
+      <input id="inputText" name="queryString" type="text" placeholder="Search">
+      <select name="choice" id="selectBox">
+        <option value="ID">Mã sinh viên</option>
+        <option value="NAME">Họ và tên</option>
+      </select>
+      <button id="submitButton" type="submit">Tìm kiếm</button>
+    </form>
+    <div id="result">
+      <% if( students != null) {%>
+      <table>
+        <thead>
+          <th>MSSV</th>
+          <th>Tên</th>
+          <th>Trường</th>
+          <th>Buổi 1</th>
+          <th>Buổi 2</th>
+          <th>Buổi 3</th>
+          <th>Số buổi đi học</th>
+          <th>Điểm quá trình</th>
+          <th>Điểm thực hành</th>
+          <th>Điểm tổng</th>
+          <th>Kết quả</th>
+        </thead>
+        <% students.map((student)=>{ %>
+        <tr>
+          <th><%- student.studentId %></th>
+          <th><%- student.name%></th>
+          <th><%- student.school%></th>
+          <% if(student.day1 == true) {%>
+          <th>X</th>
+          <%} else {%>
+          <th></th>
+          <% } %>
+          <% if(student.day2 == true) {%>
+          <th>X</th>
+          <%} else {%>
+          <th></th>
+          <% } %>
+          <% if(student.day3 == true) {%>
+          <th>X</th>
+          <%} else {%>
+          <th></th>
+          <% } %>
+          <th><%- student.attendance %></th>
+          <th><%- student.progressScore %></th>
+          <th><%- student.practiceScore %></th>
+          <th><%- Math.round(student.totalScore *100)/100 %></th>
+          <% if(student.result == true) {%>
+          <th>Đậu</th>
+          <%} else {%>
+          <th>Không đậu</th>
+          <% } %>
+        </tr>
+        <% }) %>
+      </table>
+      <%}%>
+  </div>
+  </div>
+
+
+</body>
+
+</html>
