@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const router = express.Router();
 const bodyParser = require("body-parser");
+const http = require("http");
+const port = process.env.PORT || 3000;
 
 const routes = require("./routes/index");
 
@@ -16,7 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", routes);
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("listening on 3000");
 });
 
