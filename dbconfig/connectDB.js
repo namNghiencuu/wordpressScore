@@ -1,9 +1,9 @@
-var mongoose = require("mongoose");
-var mongoDB = "mongodb://127.0.0.1/wordpressScore";
-var db = mongoose.connection;
-mongoose.connect(mongoDB, { useNewUrlParser: true });
-
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function() {
-  console.log("db connected");
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://test:admin123@muahexanh-vwmur.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect((err, client) => {
+  if (error) throw error;
+  const collection = client.db("muahexanh").collection("expressscore");
+  console.log("connected to database");
 });
