@@ -1,8 +1,7 @@
 var mongoose = require("mongoose");
-var mongoDB =
-  "mongodb+srv://muahexanh:6w3plM31JlKJp6Di@muahexanh-vwmur.mongodb.net/muahexanh?retryWrites=true&w=majority";
+var mongoDB = "mongodb://localhost:27017/wordpressscore";
 var db = mongoose.connection;
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
