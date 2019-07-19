@@ -12,12 +12,17 @@
     <button formaction="/update">Cập nhật</button>
     <button formaction="/replace">Thay thế</button>
   </form>
-  <% if(update != 0 && typeof update != "undefined") {%>
+  <% if(typeof update !== "undefined") {%>
+  <% if(update != 0) {%>
   <p>Bạn đã cập nhật <%- update %> người</p>
   <%} %>
-  <% if(create != 0 && typeof create != "undefined") {%>
+  <%}%>
+  <% if(typeof create !== "undefined") {%>
+  <% if(create != 0 ) {%>
   <p>Bạn đã tạo <%- create %> người</p>
   <%} %>
+  <%}%>
+
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { readExcel } = require("../public/script/readExcel");
+const { compareAndUpdateDB } = require("../services/processDB");
 
 const mongoose = require("mongoose");
 const {
@@ -9,15 +10,15 @@ const {
   saveFileInformation
 } = require("../services/uploadFile");
 
-router.get("/update", (req, res, next) => {
-  return res.render("uploadFile", { update: 0, create: 0 });
+router.get("/uploadFile", (req, res, next) => {
+  return res.render("uploadFile");
 });
 router.post(
   "/update",
   uploadFile("excelFile").single("file"),
   async (req, res, next) => {
     try {
-      var file = await saveFileInformation({
+      var savedFileInformation = await saveFileInformation({
         file: req.file,
         link: getLink(req.file),
         class: req.body.class
@@ -27,11 +28,12 @@ router.post(
           .model("student")
           .find({ class: req.body.class })
           .exec();
-        var [existStudent, workbookContent] = await Promise.all([
+        var [existStudentInDB, workbookContent] = await Promise.all([
           existStudentPromise,
-          readExcel(file)
+          readExcel(savedFileInformation)
         ]);
-        if (existStudent.length == 0) {
+        // Create student
+        if (existStudentInDB.length == 0) {
           try {
             await mongoose
               .model("student")
@@ -46,49 +48,11 @@ router.post(
             return res.send("create student in db error" + error);
           }
         } else {
-          var create = (update = 0);
-          let result = await Promise.all(
-            workbookContent.map(async (content, index) => {
-              let found = await existStudent.find(function(student) {
-                return (
-                  student.studentId.valueOf() === content.studentId.valueOf()
-                );
-              });
-              if (!found) {
-                await mongoose.model("student").create(value, (err, result) => {
-                  if (err) throw err;
-                  create++;
-                });
-              } else {
-                try {
-                  await found.updateOne(
-                    {
-                      $set: {
-                        day1: content.day1,
-                        day2: content.day2,
-                        day3: content.day3,
-                        progressScore: content.progressScore,
-                        practiceScore: content.practiceScore,
-                        totalScore: content.totalScore,
-                        attendance: content.attendance,
-                        result: content.result
-                      }
-                    },
-                    (err, result) => {
-                      if (err) throw err;
-                      update++;
-                    }
-                  );
-                } catch (error) {
-                  console.log("error when update at index: " + index);
-                  return res.send(error);
-                }
-              }
-            })
-          );
-          console.log("update: " + update);
-          console.log("create: " + create);
-          return res.render("uploadFile", { update: update, create: create });
+          let result = compareAndUpdateDB(workbookContent, existStudentInDB);
+
+          console.log("update: " + result.updated);
+          console.log("create: " + result.created);
+          return res.render("uploadFile", result);
         }
       } catch (error) {
         console.log(
