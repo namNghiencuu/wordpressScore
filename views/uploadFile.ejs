@@ -6,15 +6,16 @@
 </head>
 
 <body>
-  <form id="uploadFile" action="/uploadFile" method="POST" enctype="multipart/form-data">
+  <form id="uploadFile" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="text" name="class" placeholder="Nhập lớp vào đây">
-    <button type="submit">Tải lên</button>
+    <button formaction="/update">Cập nhật</button>
+    <button formaction="/replace">Thay thế</button>
   </form>
-  <% if(update != 0) {%>
+  <% if(update != 0 && typeof update != "undefined") {%>
   <p>Bạn đã cập nhật <%- update %> người</p>
   <%} %>
-  <% if(create != 0) {%>
+  <% if(create != 0 && typeof create != "undefined") {%>
   <p>Bạn đã tạo <%- create %> người</p>
   <%} %>
 </body>

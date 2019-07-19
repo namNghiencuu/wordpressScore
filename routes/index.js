@@ -9,11 +9,11 @@ const {
   saveFileInformation
 } = require("../services/uploadFile");
 
-router.get("/uploadFile", (req, res, next) => {
+router.get("/update", (req, res, next) => {
   return res.render("uploadFile", { update: 0, create: 0 });
 });
 router.post(
-  "/uploadFile",
+  "/update",
   uploadFile("excelFile").single("file"),
   async (req, res, next) => {
     try {
@@ -106,7 +106,7 @@ router.post(
 );
 
 router.get("/", (req, res, next) => {
-  return res.render("view", { students: null });
+  return res.render("view");
 });
 
 router.post("/getscore", async (req, res, next) => {
