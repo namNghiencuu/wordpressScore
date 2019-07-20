@@ -6,12 +6,10 @@
 </head>
 
 <body>
-  <form id="uploadFile" enctype="multipart/form-data">
+  <form id="uploadFile" action="/update" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="text" name="class" placeholder="Nhập lớp vào đây">
-    <button type="submit" formaction="/update">Cập nhật</button>
-    <button type="submit" formaction="/replace" formmethod="POST" formenctype="multipart/form-data">Thay thế</button>
-    <button type="submit" formaction="/delete" formmethod="POST" formenctype="multipart/form-data">Xóa</button>
+    <button type="submit">Cập nhật</button>
   </form>
 
   <% if(typeof update !== "undefined") {%>

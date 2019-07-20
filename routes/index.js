@@ -48,7 +48,10 @@ router.post(
             return res.send("create student in db error" + error);
           }
         } else {
-          let result = compareAndUpdateDB(workbookContent, existStudentInDB);
+          let result = await compareAndUpdateDB(
+            workbookContent,
+            existStudentInDB
+          );
 
           console.log("update: " + result.updated);
           console.log("create: " + result.created);
