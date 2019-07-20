@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Xóa lớp</title>
+</head>
+
+<body>
+  <form id="uploadFile" action="/delete" method="POST">
+    <input type="text" name="class" placeholder="Nhập lớp vào đây">
+    <button type="submit">Xóa</button>
+  </form>
+  <% if(typeof msg !== "undefined") {%>
+  <p><%- msg %></p>
+  <%}%>
+
+</body>
+
+</html>

@@ -68,6 +68,27 @@ router.post(
     }
   }
 );
+router.get("/delete", (req, res, next) => {
+  return res.render("delete");
+});
+router.post("/delete", (req, res, next) => {
+  try {
+    console.log(req.body.class);
+    var existStudent = mongoose
+      .model("student")
+      .deleteMany({ class: req.body.class })
+      .exec(err => {
+        if (err) throw err;
+        console.log("remove all");
+        return res.render("delete", {
+          msg: "remove all student of class " + req.body.class
+        });
+      });
+  } catch (error) {
+    console.log("error when remove student in db" + " : " + error);
+    return res.status(500).send(error);
+  }
+});
 
 router.get("/", (req, res, next) => {
   return res.render("view");
