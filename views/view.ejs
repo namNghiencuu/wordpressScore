@@ -6,17 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/stylesheet/view.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="/public/script/views.js" language="javascript"></script>
 </head>
 
@@ -26,10 +21,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <a class="navbar-brand" href="#">
-        <img src="/images/logo.png" width="60" height="60" class="d-inline-block align-top" alt="" style="float: left;"> 
+        <img src="/images/logo.png" width="60" height="60" class="d-inline-block align-top" alt="" style="float: left;">
         <div> Trường Đại Học Công Nghệ Thông Tin<br>
-        ĐHQG Thành Phố Hồ Chí Minh</div>
-        </a>
+          ĐHQG Thành Phố Hồ Chí Minh</div>
+      </a>
     </nav>
     <!-- Navbar -->
     <!-- Full Page Intro -->
@@ -46,7 +41,8 @@
               <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"> Lớp Học WordPress 2019
               </h1>
               <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-              <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s"> Dù kết quả như thế nào thì các bạn cũng đừng buồn,
+              <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s"> Dù kết quả như thế nào thì các bạn cũng đừng
+                buồn,
                 vì chúng ta đã được biết thêm nhiều điều quan trọng khác hơn là kiến thức như sự chăm chỉ, sự cẩn
                 thận,.. Hi vọng các bán sẽ có những kí ức đẹp nhất về lớp học WordPress 2019, về đội hình chuyển giao
                 công nghệ Web của chúng mình. Xin chân thành cảm ơn. </h6>
@@ -74,61 +70,61 @@
                       </div>
                       <button type="submit" id="submitButton" class="btn btn-primary">Tìm Kiếm</button>
                     </form>
-                    <div id="result">
-                      <% if( students != null) {%>
-                      <table class="table table-hover" style="color: white">
-                        <thead>
-                          <th>MSSV</th>
-                          <th>Tên</th>
-                          <th>Trường</th>
-                          <th>Buổi 1</th>
-                          <th>Buổi 2</th>
-                          <th>Buổi 3</th>
-                          <th>Số buổi đi học</th>
-                          <th>Điểm quá trình</th>
-                          <th>Điểm thực hành</th>
-                          <th>Điểm tổng</th>
-                          <th>Kết quả</th>
-                        </thead>
-                        <% students.map((student)=>{ %>
-                        <tr>
-                          <th><%- student.studentId %></th>
-                          <th><%- student.name%></th>
-                          <th><%- student.school%></th>
-                          <% if(student.day1 == true) {%>
-                          <th>X</th>
-                          <%} else {%>
-                          <th></th>
-                          <% } %>
-                          <% if(student.day2 == true) {%>
-                          <th>X</th>
-                          <%} else {%>
-                          <th></th>
-                          <% } %>
-                          <% if(student.day3 == true) {%>
-                          <th>X</th>
-                          <%} else {%>
-                          <th></th>
-                          <% } %>
-                          <th><%- student.attendance %></th>
-                          <th><%- student.progressScore %></th>
-                          <th><%- student.practiceScore %></th>
-                          <th><%- Math.round(student.totalScore *100)/100 %></th>
-                          <% if(student.result == true) {%>
-                          <th>Đậu</th>
-                          <%} else {%>
-                          <th>Không đậu</th>
-                          <% } %>
-                        </tr>
-                        <% }) %>
-                      </table>
-                      <%}%>
-                    </div>
                   </div>
-              </div>
-              </div>
+                </div>
               </div>
               <!--/.Form-->
+            </div>
+            <div id="result">
+              <% if( students != null) {%>
+              <table class="table table-hover" style="font-size: 20px; color: white">
+                <thead>
+                  <th>MSSV</th>
+                  <th>Tên</th>
+                  <th>Trường</th>
+                  <th>Buổi 1</th>
+                  <th>Buổi 2</th>
+                  <th>Buổi 3</th>
+                  <th>Số buổi đi học</th>
+                  <th>Điểm quá trình</th>
+                  <th>Điểm thực hành</th>
+                  <th>Điểm tổng</th>
+                  <th>Kết quả</th>
+                </thead>
+                <% students.map((student)=>{ %>
+                <tr>
+                  <th><%- student.studentId %></th>
+                  <th><%- student.name%></th>
+                  <th><%- student.school%></th>
+                  <% if(student.day1 == true) {%>
+                  <th>X</th>
+                  <%} else {%>
+                  <th></th>
+                  <% } %>
+                  <% if(student.day2 == true) {%>
+                  <th>X</th>
+                  <%} else {%>
+                  <th></th>
+                  <% } %>
+                  <% if(student.day3 == true) {%>
+                  <th>X</th>
+                  <%} else {%>
+                  <th></th>
+                  <% } %>
+                  <th><%- student.attendance %></th>
+                  <th><%- student.progressScore %></th>
+                  <th><%- student.practiceScore %></th>
+                  <th><%- Math.round(student.totalScore *100)/100 %></th>
+                  <% if(student.result == true) {%>
+                  <th>Đậu</th>
+                  <%} else {%>
+                  <th>Không đậu</th>
+                  <% } %>
+                </tr>
+                <% }) %>
+              </table>
+              <%}%>
+              </div>
             </div>
             <!--Grid column-->
           </div>
